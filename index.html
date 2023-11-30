@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <span style="--i:1;"><img src="./img/1.png" alt=""></span>
+            <span style="--i:2;"><img src="./img/2.jpg" alt=""></span>
+            <span style="--i:3;"><img src="./img/3.jpg" alt=""></span>
+            <span style="--i:4;"><img src="./img/4.jpg" alt=""></span>
+            <span style="--i:5;"><img src="./img/5.jpg" alt=""></span>
+            <span style="--i:6;"><img src="./img/6.jpg" alt=""></span>
+            <span style="--i:7;"><img src="./img/7.jpg" alt=""></span>
+            <span style="--i:8;"><img src="./img/8.jpg" alt=""></span>
+        </div>
+        <div class="btns">
+            <div class="btn prev"></div>
+            <div class="btn next"></div>
+        </div>
+
+        <audio id="myAudio" autoplay loop>
+            <source src="./img/y2mate.com - Que Mas Puedo Pedir.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+        
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let audio = document.getElementById("myAudio");
+            audio.play().catch(error => {
+                console.log("Error al reproducir el audio automáticamente:", error);
+                // Aquí puedes manejar el error si el navegador bloquea la reproducción automática
+                // Por ejemplo, mostrar un mensaje al usuario o sugerirle activar la reproducción manualmente.
+            });
+        });
+
+        let prev = document.querySelector('.prev');
+        let next = document.querySelector('.next');
+        let box = document.querySelector('.box');
+    
+        let degrees = 0;
+    
+        prev.addEventListener('click', function() {
+            degrees += 45;
+            box.style.transform = `perspective(1000px) rotateY(${degrees}deg)`;
+        });
+    
+        next.addEventListener('click', function() {
+            degrees -= 45;
+            box.style.transform = `perspective(1000px) rotateY(${degrees}deg)`;
+        });
+
+        let audio = document.getElementById("myAudio");
+
+audio.addEventListener("ended", function() {
+    this.currentTime = 0;
+    this.play();
+});
+
+    </script>
+</body>
+</html>
